@@ -2,13 +2,51 @@ html, body {
     padding: 0;
     margin: 0;
     height: 100%;
+    color: #060004;
     background-color: whitesmoke;
     font-family: Garamond, Cambria, serif;
     font-size: 14pt;
 }
 
-#rootContainer header {
-    color: whitesmoke;
-    background-color: brown;
+#appHeader {
+    @extend .roboto-black;
+    background-color: #F2CE42;
     border-bottom: 1pt darkgray solid;
 }
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
