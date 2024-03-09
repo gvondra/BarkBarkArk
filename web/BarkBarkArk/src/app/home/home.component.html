@@ -9,7 +9,8 @@
     currentPageReportTemplate="{first} to {last} of {totalRecords}"
     [rowsPerPageOptions]="[10, 100, 1000]"
     [tableStyle]="{ 'min-width': '50rem', 'font-family': 'Garamond' }"
-    [globalFilterFields]="['Title', 'Tags']">
+    [globalFilterFields]="['Title', 'Tags']"
+    [scrollable]="false">
     <ng-template pTemplate="caption">
         <input pInputText type="text" (input)="filterGlobal(videoTable, $event, 'contains')" placeholder="filter" />
     </ng-template>
@@ -17,17 +18,16 @@
         <tr>
             <th>Title</th>
             <th>Published</th>
-            <th>Video</th>
             <th>Tags</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-video>
         <tr>
-            <td>{{ video.Title }}</td>
-            <td>{{ toLocalDate(video.PublishedTimestammp) }}</td>
             <td>
-                <a *ngIf="video.IsStored" [routerLink]="getVideoAddress(video)">View</a>
+                <span *ngIf="!video.IsStored">{{ video.Title }}</span>
+                <a *ngIf="video.IsStored" [routerLink]="getVideoAddress(video)">{{ video.Title }}</a>
             </td>
+            <td>{{ toLocalDate(video.PublishedTimestammp) }}</td>
             <td>{{ joinTags(video.Tags) }}</td>
         </tr>
     </ng-template>
