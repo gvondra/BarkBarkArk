@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { ChannelDataService } from './services/channel-data.service';
+import { VideoComponent } from './video/video.component';
 
 export function channelDataFactory(channelDataService: ChannelDataService) {
   return () => channelDataService.LoadSettings();
@@ -17,7 +18,8 @@ export function channelDataFactory(channelDataService: ChannelDataService) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,

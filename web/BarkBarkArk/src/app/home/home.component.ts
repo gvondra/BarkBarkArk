@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ChannelData } from '../models/channel-data';
 import { ChannelDataService } from '../services/channel-data.service';
 import { Video } from '../models/video';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -44,6 +43,7 @@ export class HomeComponent {
   }
 
   getVideoAddress(video: Video): Array<string> {
-    return [ "/video", environment['AssetsDirectory'], video.BlobName ?? "" ]
+    return [ "/video", video.VideoId ?? "" ];
   }
+  
 }
