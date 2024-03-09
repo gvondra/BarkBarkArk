@@ -8,15 +8,22 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class ChannelDataService {
-  private ChannelData: ChannelData | null = null;
+  private _channelData: ChannelData | null = null;
 
   constructor(private httpClient: HttpClient) { }
+
+  get ChannelData(): ChannelData | null
+  { 
+    return this._channelData;
+  }
 
   LoadSettings() : Promise<ChannelData> {
     return firstValueFrom(this.httpClient.get(environment["ChannelDataPath"]))
     .then(res => {
-      this.ChannelData = res as ChannelData;
+      this._channelData = res as ChannelData;
       return res as ChannelData;
     });
   }
+
+  
 }
