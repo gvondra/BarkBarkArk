@@ -1,4 +1,5 @@
-<button class="btn btn-link" (click)="back()">back</button>
+<button class="btn btn-link" (click)="back()" style="float: right;">back</button>
+<h2>{{ Video?.Title }}</h2>
 <div>
 <video height="720px" controls>
     <source [attr.src]="getSource()" type="video/mp4" />
