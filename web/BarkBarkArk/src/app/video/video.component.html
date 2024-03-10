@@ -1,7 +1,8 @@
 <button class="btn btn-link" (click)="back()" style="float: right;">back</button>
 <h2>{{ Video?.Title }}</h2>
 <div>
-<video height="720px" controls>
+<video style="max-height: 720px; width: 100%;" controls>
     <source [attr.src]="getSource()" type="video/mp4" />
 </video>
 </div>
+<p style="font-size: small;">right click the video to download</p>
