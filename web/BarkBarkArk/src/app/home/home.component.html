@@ -1,5 +1,6 @@
+<div [style.display]="HomeDisplay" [style.visibility]="HomeVisibility">
 <div style="text-align: right;">
-    <a [routerLink]="[ '/about' ]">about</a>
+    <button class="btn btn-link" (click)="showAbout()">about</button>
 </div>
 <div style="padding-bottom: 2rem;">
 <p-table 
@@ -16,7 +17,7 @@
     [globalFilterFields]="['Title', 'Tags']"
     [scrollable]="false">
     <ng-template pTemplate="caption">
-        <input pInputText type="text" (input)="filterGlobal(videoTable, $event, 'contains')" placeholder="filter" />
+        <input pInputText type="text" (input)="filterGlobal(videoTable, $event, 'contains')" placeholder="filter" [value]="Filter" />
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
@@ -29,7 +30,7 @@
         <tr>
             <td>
                 <span *ngIf="!video.IsStored">{{ video.Title }}</span>
-                <a *ngIf="video.IsStored" [routerLink]="getVideoAddress(video)">{{ video.Title }}</a>
+                <button *ngIf="video.IsStored" (click)="showVideo(video)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">{{ video.Title }}</button>
             </td>
             <td>{{ toLocalDate(video.PublishedTimestammp) }}</td>
             <td>{{ joinTags(video.Tags) }}</td>
@@ -37,3 +38,6 @@
     </ng-template>
 </p-table>
 </div>
+</div>
+<app-video *ngIf="ShowVideo" (close)="closeVideo()" [Video]="SelectedVideo"></app-video>
+<app-about *ngIf="ShowAbout" (close)="closeAbout()"></app-about>

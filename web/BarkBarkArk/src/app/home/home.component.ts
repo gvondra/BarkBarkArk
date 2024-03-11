@@ -10,6 +10,12 @@ import { Video } from '../models/video';
 })
 export class HomeComponent {
   ChannelData: ChannelData | null = null;
+  ShowAbout: boolean = false;
+  ShowVideo: boolean = false;
+  SelectedVideo: Video | null = null;
+  Filter: string = "";
+  HomeDisplay: string = "";
+  HomeVisibility: string = "";
 
   constructor(private channelDataService: ChannelDataService) { }
 
@@ -46,4 +52,36 @@ export class HomeComponent {
     return [ "/video", video.VideoId ?? "" ];
   }
   
+  showAbout() {
+    this.hideAll();
+    this.ShowAbout = true;
+  }
+
+  closeAbout() {
+    this.hideAll();
+    this.showHome();
+  }
+
+  showVideo(video: Video) {
+    this.SelectedVideo = video;
+    this.hideAll();
+    this.ShowVideo = true;
+  }
+
+  closeVideo() {
+    this.hideAll();
+    this.showHome();
+  }
+
+  private showHome() {
+    this.HomeDisplay = "";
+    this.HomeVisibility = "";
+  }
+
+  private hideAll() {
+    this.HomeDisplay = "none";
+    this.HomeVisibility = "hidden";
+    this.ShowAbout = false;
+    this.ShowVideo = false;
+  }
 }

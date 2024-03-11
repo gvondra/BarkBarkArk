@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -8,9 +7,9 @@ import { Location } from '@angular/common';
 })
 export class AboutComponent {
 
-  constructor(private location: Location) { }
+  @Output() close = new EventEmitter();
 
-  back() {
-    this.location.back();
+  onClose() {
+    this.close.emit();
   }
 }
