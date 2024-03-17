@@ -30,7 +30,7 @@
         <tr>
             <td>
                 <span *ngIf="!video.IsStored">{{ video.Title }}</span>
-                <button *ngIf="video.IsStored" (click)="showVideo(video)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">{{ video.Title }}</button>
+                <button *ngIf="video.IsStored" (click)="showVideo($event, video)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">{{ video.Title }}</button>
             </td>
             <td>{{ toLocalDate(video.PublishedTimestammp) }}</td>
             <td>{{ joinTags(video.Tags) }}</td>

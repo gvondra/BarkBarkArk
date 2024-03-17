@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChannelData } from '../models/channel-data';
 import { ChannelDataService } from '../services/channel-data.service';
 import { Video } from '../models/video';
+import { Subject, delay } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ export class HomeComponent {
   Filter: string = "";
   HomeDisplay: string = "";
   HomeVisibility: string = "";
+  VideoButton: any | null = null;
+  ScrollIntoViewSubject: Subject<any> = new Subject<any>();
 
   constructor(private channelDataService: ChannelDataService) { }
 
@@ -25,6 +28,9 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.ChannelData = this.channelDataService.ChannelData;
+    this.ScrollIntoViewSubject
+      .pipe(delay(1000))
+      .subscribe(tgt => tgt.scrollIntoView());
   }
 
   filterGlobal(table: any, event: any, type: string) {
@@ -62,7 +68,8 @@ export class HomeComponent {
     this.showHome();
   }
 
-  showVideo(video: Video) {
+  showVideo(evnt: any, video: Video) {
+    this.VideoButton = evnt.target;
     this.SelectedVideo = video;
     this.hideAll();
     this.ShowVideo = true;
@@ -71,6 +78,9 @@ export class HomeComponent {
   closeVideo() {
     this.hideAll();
     this.showHome();
+    if (this.VideoButton) {
+      this.ScrollIntoViewSubject.next(this.VideoButton);
+    }
   }
 
   private showHome() {
