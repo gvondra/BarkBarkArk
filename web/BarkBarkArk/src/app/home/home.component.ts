@@ -3,6 +3,7 @@ import { ChannelData } from '../models/channel-data';
 import { ChannelDataService } from '../services/channel-data.service';
 import { Video } from '../models/video';
 import { Subject, delay } from 'rxjs';
+import { Playlist } from '../models/playlist';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent {
   ShowAbout: boolean = false;
   ShowVideo: boolean = false;
   ShowAudio: boolean = false;
+  ShowPlaylists: boolean = false;
   SelectedVideo: Video | null = null;
   Filter: string = "";
   HomeDisplay: string = "";
@@ -91,6 +93,21 @@ export class HomeComponent {
     this.ShowAudio = true;
   }
 
+  showPlaylists() {
+    this.hideAll();
+    this.ShowPlaylists = true;
+  }
+
+  closePlaylists() {
+    this.hideAll();
+    this.showHome();
+  }
+
+  playlistSelected(playlist: Playlist) {
+    this.hideAll();
+    this.showHome();
+  }
+
   private showHome() {
     this.HomeDisplay = "";
     this.HomeVisibility = "";
@@ -102,5 +119,6 @@ export class HomeComponent {
     this.ShowAbout = false;
     this.ShowVideo = false;
     this.ShowAudio = false;
+    this.ShowPlaylists = false;
   }
 }

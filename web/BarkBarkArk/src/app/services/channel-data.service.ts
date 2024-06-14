@@ -12,8 +12,7 @@ export class ChannelDataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  get ChannelData(): ChannelData | null
-  { 
+  get ChannelData(): ChannelData | null { 
     return this._channelData;
   }
 

@@ -11,9 +11,15 @@ import { ChannelDataService } from './services/channel-data.service';
 import { VideoComponent } from './video/video.component';
 import { AboutComponent } from './about/about.component';
 import { AudioComponent } from './audio/audio.component';
+import { PlaylistsComponent } from './playlists/playlists.component';
+import { PlayListDataService } from './services/play-list-data.service';
 
 export function channelDataFactory(channelDataService: ChannelDataService) {
   return () => channelDataService.LoadSettings();
+}
+
+export function playlistDataFactory(playlistDataService: PlayListDataService) {
+  return () => playlistDataService.LoadSettings();
 }
 
 @NgModule({
@@ -22,7 +28,8 @@ export function channelDataFactory(channelDataService: ChannelDataService) {
     HomeComponent,
     VideoComponent,
     AboutComponent,
-    AudioComponent
+    AudioComponent,
+    PlaylistsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +39,17 @@ export function channelDataFactory(channelDataService: ChannelDataService) {
   ],
   providers: [
     ChannelDataService,
+    PlayListDataService,
     {
       provide: APP_INITIALIZER,
       useFactory: channelDataFactory,
       deps: [ChannelDataService],
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: playlistDataFactory,
+      deps: [PlayListDataService],
       multi: true
     }
   ],

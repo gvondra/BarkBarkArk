@@ -1,0 +1,15 @@
+<button class="btn btn-link" (click)="onClose()" style="float: right;">close</button>
+<h2>Playlists</h2>
+<ul style="list-style-type: none; list-style-position: inside; padding: 0;">
+    <li *ngFor="let playlist of Playlists">
+        <button (click)="onPlaylistSelected(playlist)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">{{ playlist.Title }}</button>
+    </li>
+</ul>
+<table>
+    <tbody>
+        <tr *ngFor="let playlist of Playlists">
+            <td>{{ playlist.Title }}</td>
+            <td>{{ playlist.Description }}</td>
+        </tr>
+    </tbody>
+</table>

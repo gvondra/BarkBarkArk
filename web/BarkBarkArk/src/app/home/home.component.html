@@ -1,5 +1,6 @@
 <div [style.display]="HomeDisplay" [style.visibility]="HomeVisibility">
 <div style="text-align: right;">
+    <button class="btn btn-link" (click)="showPlaylists()">playlists</button>
     <button class="btn btn-link" (click)="showAbout()">about</button>
 </div>
 <div style="padding-bottom: 2rem;">
@@ -45,4 +46,5 @@
 </div>
 <app-video *ngIf="ShowVideo" (close)="closeVideo()" [Video]="SelectedVideo"></app-video>
 <app-audio *ngIf="ShowAudio" (close)="closeVideo()" [Video]="SelectedVideo"></app-audio>
+<app-playlists *ngIf="ShowPlaylists" (close)="closePlaylists()" (playlistSelected)="playlistSelected($event)"></app-playlists>
 <app-about *ngIf="ShowAbout" (close)="closeAbout()"></app-about>
