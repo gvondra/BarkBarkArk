@@ -1,0 +1,8 @@
+<button class="btn btn-link" (click)="onClose()" style="float: right;">close</button>
+<h2>{{ Video?.Title }}</h2>
+<div>
+<audio style="max-height: 720px; width: 100%;" controls>
+    <source [attr.src]="getSource()" type="audio/mpeg" />
+</audio>
+</div>
+<p style="font-size: small;">right click the audio to download</p>

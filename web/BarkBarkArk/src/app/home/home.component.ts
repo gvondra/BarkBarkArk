@@ -13,11 +13,12 @@ export class HomeComponent {
   ChannelData: ChannelData | null = null;
   ShowAbout: boolean = false;
   ShowVideo: boolean = false;
+  ShowAudio: boolean = false;
   SelectedVideo: Video | null = null;
   Filter: string = "";
   HomeDisplay: string = "";
   HomeVisibility: string = "";
-  VideoButton: any | null = null;
+  AnchorTarget: any | null = null;
   ScrollIntoViewSubject: Subject<any> = new Subject<any>();
 
   constructor(private channelDataService: ChannelDataService) { }
@@ -69,7 +70,7 @@ export class HomeComponent {
   }
 
   showVideo(evnt: any, video: Video) {
-    this.VideoButton = evnt.target;
+    this.AnchorTarget = evnt.target;
     this.SelectedVideo = video;
     this.hideAll();
     this.ShowVideo = true;
@@ -78,9 +79,16 @@ export class HomeComponent {
   closeVideo() {
     this.hideAll();
     this.showHome();
-    if (this.VideoButton) {
-      this.ScrollIntoViewSubject.next(this.VideoButton);
+    if (this.AnchorTarget) {
+      this.ScrollIntoViewSubject.next(this.AnchorTarget);
     }
+  }
+
+  showAudio(evnt: any, video: Video) {
+    this.AnchorTarget = evnt.target;
+    this.SelectedVideo = video;
+    this.hideAll();
+    this.ShowAudio = true;
   }
 
   private showHome() {
@@ -93,5 +101,6 @@ export class HomeComponent {
     this.HomeVisibility = "hidden";
     this.ShowAbout = false;
     this.ShowVideo = false;
+    this.ShowAudio = false;
   }
 }

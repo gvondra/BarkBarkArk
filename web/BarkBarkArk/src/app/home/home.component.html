@@ -22,6 +22,7 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Title</th>
+            <th></th>
             <th>Published</th>
             <th>Tags</th>
         </tr>
@@ -32,6 +33,9 @@
                 <span *ngIf="!video.IsStored">{{ video.Title }}</span>
                 <button *ngIf="video.IsStored" (click)="showVideo($event, video)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">{{ video.Title }}</button>
             </td>
+            <td style="vertical-align: top;">
+                <button *ngIf="video.IsAudioStored" (click)="showAudio($event, video)" class="btn btn-link" style="text-align: left; padding: 0px; margin: 0px;">mp3</button>
+            </td>
             <td>{{ toLocalDate(video.PublishedTimestammp) }}</td>
             <td>{{ joinTags(video.Tags) }}</td>
         </tr>
@@ -40,4 +44,5 @@
 </div>
 </div>
 <app-video *ngIf="ShowVideo" (close)="closeVideo()" [Video]="SelectedVideo"></app-video>
+<app-audio *ngIf="ShowAudio" (close)="closeVideo()" [Video]="SelectedVideo"></app-audio>
 <app-about *ngIf="ShowAbout" (close)="closeAbout()"></app-about>

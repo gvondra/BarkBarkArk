@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ChannelDataService } from './services/channel-data.service';
 import { VideoComponent } from './video/video.component';
 import { AboutComponent } from './about/about.component';
+import { AudioComponent } from './audio/audio.component';
 
 export function channelDataFactory(channelDataService: ChannelDataService) {
   return () => channelDataService.LoadSettings();
@@ -20,7 +21,8 @@ export function channelDataFactory(channelDataService: ChannelDataService) {
     AppComponent,
     HomeComponent,
     VideoComponent,
-    AboutComponent
+    AboutComponent,
+    AudioComponent
   ],
   imports: [
     BrowserModule,
